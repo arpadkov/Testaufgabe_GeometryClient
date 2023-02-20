@@ -131,6 +131,7 @@
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Point3D.cpp" />
     <ClCompile Include="PointMeasurement.cpp" />
+    <ClCompile Include="PointMeasurementParser.cpp" />
     <ClCompile Include="Testaufgabe_GeometryClient.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Point3D.h" />
     <ClInclude Include="PointMeasurement.h" />
+    <ClInclude Include="PointMeasurementParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

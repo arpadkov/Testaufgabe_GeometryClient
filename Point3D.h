@@ -1,10 +1,14 @@
 #pragma once
+
 class Point3D
 {
+public:
+	Point3D(double, double, double);
+
 private:
-	float x;
-	float y;
-	float z;
+	double X;
+	double Y;
+	double Z;
 
 };
 
