@@ -12,5 +12,11 @@ public:
 
 	void readFileStart();
 
+	void readLine(std::string);
+	void readEvent(std::string);
+
+	void onPointMeasurementEvent(std::string);
+	void onKeyPressEvent(std::string);
+	void onErrorEvenet(std::string);
 };
 
