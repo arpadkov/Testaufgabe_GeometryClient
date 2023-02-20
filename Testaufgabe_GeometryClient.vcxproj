@@ -127,7 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Point3D.cpp" />
+    <ClCompile Include="PointMeasurement.cpp" />
     <ClCompile Include="Testaufgabe_GeometryClient.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Point3D.h" />
+    <ClInclude Include="PointMeasurement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
