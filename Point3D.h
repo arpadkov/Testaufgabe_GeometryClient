@@ -8,10 +8,12 @@ public:
 
 	Point3D* offsetByVector(Vector3D);
 
-private:
 	double X;
 	double Y;
 	double Z;
+
+private:
+	
 
 };
 

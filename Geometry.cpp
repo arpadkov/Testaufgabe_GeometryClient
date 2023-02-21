@@ -5,7 +5,17 @@ Geometry::Geometry(std::vector<PointMeasurement> inputPoints)
 	points = inputPoints;
 }
 
-void Geometry::getCollisionPoints()
+int Geometry::size()
 {
-	points[0].getCollisionPoint();
+	return points.size();
 }
+
+PointMeasurement Geometry::getPointAt(int index)
+{
+	return points[index];
+}
+
+//void Geometry::getCollisionPoints()
+//{
+//	points[0].getCollisionPoint();
+//}

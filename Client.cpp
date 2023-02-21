@@ -1,6 +1,7 @@
 #include "Client.h"
 #include "PointMeasurement.h"
 #include "Geometry.h"
+#include "GeometryExporterCSV.h"
 #include <fstream>
 #include <iostream>
 
@@ -41,7 +42,12 @@ void Client::readInputFile()
 
 void Client::exportGeometries()
 {
-	savedGeometries[0].getCollisionPoints();
+	for (int i = 0; i < savedGeometries.size(); i++)
+	{
+		GeometryExporterCSV exporter = GeometryExporterCSV(&savedGeometries[i]);
+		exporter.exportGeometry();
+	}
+
 }
 	
 void Client::readLine(std::string input)

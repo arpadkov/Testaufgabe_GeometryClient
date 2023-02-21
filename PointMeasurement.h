@@ -9,11 +9,12 @@ public:
 	PointMeasurement(std::string);
 
 	Point3D* getCollisionPoint();
+	Point3D* measurementPoint;
 
 private:
-	Point3D* measurementPoint;
 	Vector3D* normalVector;
 	double sphereRadius;
+
 };
 
 

@@ -10,6 +10,9 @@ private:
 public:
 	Geometry(std::vector<PointMeasurement>);
 
-	void getCollisionPoints();
+	int size();
+	PointMeasurement getPointAt(int);
+
+	//void getCollisionPoints();
 };
 
