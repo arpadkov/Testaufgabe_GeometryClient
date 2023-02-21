@@ -1,4 +1,6 @@
 #pragma once
+#include "PointMeasurement.h"
+#include "Geometry.h"
 #include <list>
 #include <string>
 
@@ -6,11 +8,8 @@ class Client
 {
 private:
 	std::string client_path;
-public:
-	Client();
-	std::list<int> pointBuffer;
-
-	void readFileStart();
+	std::list<PointMeasurement> pointBuffer;
+	std::list<Geometry> savedGeometries;
 
 	void readLine(std::string);
 	void readEvent(std::string);
@@ -18,5 +17,11 @@ public:
 	void onPointMeasurementEvent(std::string);
 	void onKeyPressEvent(std::string);
 	void onErrorEvenet(std::string);
+
+public:
+	Client();	
+
+	void readInputFile();
+	void exportGeometries();
 };
 

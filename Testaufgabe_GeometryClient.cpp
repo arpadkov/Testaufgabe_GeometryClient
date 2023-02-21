@@ -7,7 +7,8 @@ int main()
 
     Client client = Client();
 
-    client.readFileStart();
+    client.readInputFile();
+    client.exportGeometries();
 }
 
 

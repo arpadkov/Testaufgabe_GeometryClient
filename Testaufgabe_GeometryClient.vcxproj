@@ -129,17 +129,21 @@
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="GeometryExporterCSV.cpp" />
     <ClCompile Include="Point3D.cpp" />
     <ClCompile Include="PointMeasurement.cpp" />
     <ClCompile Include="PointMeasurementParser.cpp" />
     <ClCompile Include="Testaufgabe_GeometryClient.cpp" />
+    <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="GeometryExporterCSV.h" />
     <ClInclude Include="Point3D.h" />
     <ClInclude Include="PointMeasurement.h" />
     <ClInclude Include="PointMeasurementParser.h" />
+    <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

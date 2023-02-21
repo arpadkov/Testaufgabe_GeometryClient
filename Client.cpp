@@ -1,5 +1,6 @@
 #include "Client.h"
 #include "PointMeasurement.h"
+#include "Geometry.h"
 #include <fstream>
 #include <iostream>
 
@@ -16,7 +17,7 @@ Client::Client()
 	client_path += "\\GeometryClient";
 }
 
-void Client::readFileStart()
+void Client::readInputFile()
 {
 	std::string input_filename = client_path + "\\input\\Input.txt";
 
@@ -37,6 +38,11 @@ void Client::readFileStart()
 		file.close();
 	}
 }
+
+void Client::exportGeometries()
+{
+
+}
 	
 void Client::readLine(std::string input)
 {
@@ -50,7 +56,7 @@ void Client::readLine(std::string input)
 
 void Client::readEvent(std::string input)
 {
-	std::cout << input.substr(8, 8) << "\n";
+	//std::cout << input.substr(8, 8) << "\n";
 
 	if (input.substr(8, 6) == "PtMeas")
 	{
@@ -61,33 +67,45 @@ void Client::readEvent(std::string input)
 	else if(input.substr(8, 5) == "Error")
 	{
 		// Error event
+		onErrorEvenet(input);
 	}
 
 	else if (input.substr(8, 8) == "KeyPress")
 	{
 		// Key press event
+		onKeyPressEvent(input);
 	}
 }
 
-void Client::onPointMeasurementEvent(std::string input)
+void Client::onPointMeasurementEvent(std::string pointMeasEventLine)
 {
 	// create PointMeasurement
 	// add point to buffer
 	// log to cout
 
-	PointMeasurement point = PointMeasurement(input);
+	PointMeasurement point = PointMeasurement(pointMeasEventLine);
+	pointBuffer.push_back(point);
 }
 
-void Client::onKeyPressEvent(std::string input)
+void Client::onKeyPressEvent(std::string keyPressEventLine)
 {
 	// create Geometry object from buffer
 	// export object to file
 	// log to cout
+	if (keyPressEventLine.find("Done") != std::string::npos)
+	{
+		savedGeometries.push_back(Geometry(pointBuffer));
+		pointBuffer.clear();
+	}
+	// elseif (...) -> possibility to define actions for other KeyPressEvents
 }
 
-void Client::onErrorEvenet(std::string input)
+void Client::onErrorEvenet(std::string errorEventLine)
 {
 	// delete points from buffer
 	// continue reading file after confirmation
 	// log to cout
+
+	pointBuffer.clear();
+	std::cout << errorEventLine;
 }
