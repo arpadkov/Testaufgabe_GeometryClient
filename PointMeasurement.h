@@ -8,7 +8,7 @@ class PointMeasurement
 public:
 	PointMeasurement(std::string);
 
-	Point3D getCollisionPoint();
+	Point3D* getCollisionPoint();
 
 private:
 	Point3D* measurementPoint;

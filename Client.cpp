@@ -41,7 +41,7 @@ void Client::readInputFile()
 
 void Client::exportGeometries()
 {
-
+	savedGeometries[0].getCollisionPoints();
 }
 	
 void Client::readLine(std::string input)

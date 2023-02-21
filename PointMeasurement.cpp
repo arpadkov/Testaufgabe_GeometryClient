@@ -24,15 +24,15 @@ PointMeasurement::PointMeasurement(std::string raw_string)
     sphereRadius = parser.findRvalue();
 }
 
-Point3D PointMeasurement::getCollisionPoint()
+Point3D* PointMeasurement::getCollisionPoint()
 {
     // Calculate collision point from measuredPoint, offsetDirection and offsetRadius
 
-    double X = 0.0;
-    double Y = 0.0;
-    double Z = 0.0;
+    Vector3D unitVector = normalVector->getUnitVector();
+    Vector3D offsetVector = unitVector * sphereRadius;
+    Point3D* collisionPoint = measurementPoint->offsetByVector(offsetVector);
 
-    return Point3D(X, Y, Z);
+    return collisionPoint;
 }
 
 

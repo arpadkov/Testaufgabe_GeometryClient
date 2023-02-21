@@ -1,13 +1,15 @@
 #pragma once
 #include "PointMeasurement.h"
-#include <list>
+#include <vector>
 
 class Geometry
 {
 private:
-	std::list<PointMeasurement> points;
+	std::vector<PointMeasurement> points;
 
 public:
-	Geometry(std::list<PointMeasurement>);
+	Geometry(std::vector<PointMeasurement>);
+
+	void getCollisionPoints();
 };
 
