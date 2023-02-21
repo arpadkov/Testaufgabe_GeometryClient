@@ -17,7 +17,6 @@ bool GeometryExporterCSV::exportGeometry()
 void GeometryExporterCSV::setPoints()
 {
 
-
 	for (int i = 0; i < geometry->size(); i++)
 	{
 		PointMeasurement current_point = geometry->getPointAt(i);
@@ -30,7 +29,5 @@ void GeometryExporterCSV::setPoints()
 		collisionPtsY.push_back(current_point.getCollisionPoint()->Y);
 		collisionPtsZ.push_back(current_point.getCollisionPoint()->Z);
 	}
-
-
 
 }
