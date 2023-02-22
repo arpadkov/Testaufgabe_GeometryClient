@@ -22,4 +22,4 @@ private:
 	std::string normalVectorSubstr;
 };
 
-int findNthOccurance(std::string, std::string, int);
+int findNthOccurance(std::string, char, int);

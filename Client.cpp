@@ -1,5 +1,6 @@
 #include "Client.h"
 #include "PointMeasurement.h"
+#include "PointMeasurementParser.h"
 #include "Geometry.h"
 #include "GeometryExporterCSV.h"
 #include <fstream>
@@ -44,11 +45,14 @@ void Client::exportGeometries()
 {
 	for (int i = 0; i < savedGeometries.size(); i++)
 	{
-		std::string geomName = "Geometrie " + std::to_string(i+1) + ".csv";
+		std::string geomName = "Geometrie" + std::to_string(i+1) + ".csv";
 		std::string outputFilename = client_path + "\\output" + "\\" + geomName;
 
 		GeometryExporterCSV exporter = GeometryExporterCSV(&savedGeometries[i]);
 		exporter.exportGeometry(outputFilename, geomName);
+
+		std::cout << "Geometrie " + std::to_string(i + 1) << " exported to:\n";
+		std::cout << outputFilename << "\n";
 	}
 
 }
@@ -73,16 +77,16 @@ void Client::readEvent(std::string input)
 		onPointMeasurementEvent(input);
 	}
 
-	else if(input.substr(8, 5) == "Error")
-	{
-		// Error event
-		onErrorEvenet(input);
-	}
-
 	else if (input.substr(8, 8) == "KeyPress")
 	{
 		// Key press event
 		onKeyPressEvent(input);
+	}
+
+	else if (input[6] == '!')
+	{
+		// Error event
+		onErrorEvent(input);
 	}
 }
 
@@ -90,10 +94,9 @@ void Client::onPointMeasurementEvent(std::string pointMeasEventLine)
 {
 	// create PointMeasurement
 	// add point to buffer
-	// log to cout
 
 	PointMeasurement point = PointMeasurement(pointMeasEventLine);
-	pointBuffer.push_back(point);
+	pointBuffer.push_back(point);	
 }
 
 void Client::onKeyPressEvent(std::string keyPressEventLine)
@@ -101,20 +104,56 @@ void Client::onKeyPressEvent(std::string keyPressEventLine)
 	// create Geometry object from buffer
 	// export object to file
 	// log to cout
+
 	if (keyPressEventLine.find("Done") != std::string::npos)
 	{
 		savedGeometries.push_back(Geometry(pointBuffer));
 		pointBuffer.clear();
+
+		std::cout << "Geometry " << std::to_string(savedGeometries.size()) << " finished\n";
+		std::cout << "Press any key to continue reading" << "\n";
+		std::cin.ignore();
+	}
+	if (keyPressEventLine.find("Del") != std::string::npos)
+	{
+		pointBuffer.pop_back();
+
+		std::cout << "Previus point is deleted";
+		std::cout << "Press any key to continue reading" << "\n";
+		std::cin.ignore();
 	}
 	// elseif (...) -> possibility to define actions for other KeyPressEvents
 }
 
-void Client::onErrorEvenet(std::string errorEventLine)
+void Client::onErrorEvent(std::string errorEventLine)
 {
 	// delete points from buffer
 	// continue reading file after confirmation
 	// log to cout
 
+	int startMessage = findNthOccurance(errorEventLine, '"', 1) + 1;
+	int endMessage = findNthOccurance(errorEventLine, '"', 2);
+	std::string errorMessage = errorEventLine.substr(startMessage, endMessage - startMessage);
+
+	int startSeverity = findNthOccurance(errorEventLine, '(', 1) + 1;
+	int endSeverity = findNthOccurance(errorEventLine, ',', 1);
+	std::string errorSeverity = errorEventLine.substr(startSeverity, endSeverity - startSeverity);
+
+	int startCode = findNthOccurance(errorEventLine, ',', 1) + 1;
+	int endCode = findNthOccurance(errorEventLine, ',', 2);
+	std::string errorCode = errorEventLine.substr(startCode, endCode - startCode);
+
+	int startMethod = findNthOccurance(errorEventLine, ',', 2) + 1;
+	int endMethod = findNthOccurance(errorEventLine, ',', 3);
+	std::string errorMethod = errorEventLine.substr(startMethod, endMethod - startMethod);
+
+	std::cout << "Error message: " << errorMessage << "\n";
+	std::cout << "Error severity: " << errorSeverity << "\n";
+	std::cout << "Error code: " << errorCode << "\n";
+	std::cout << "Caused by method: " << errorMethod << "\n";
+	std::cout << std::to_string(pointBuffer.size()) << " Points will be discarded" << "\n";;
+	std::cout << "Press any key to continue reading" << "\n";
+	std::cin.ignore();
+
 	pointBuffer.clear();
-	std::cout << errorEventLine;
 }

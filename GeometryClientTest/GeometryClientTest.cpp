@@ -101,44 +101,28 @@ namespace GeometryClientTest
 
 		TEST_METHOD(Vector3DMultiplyTest)
 		{
-			//Vector3D originalVector = Vector3D(1.0, 1.0, 1.0);
-			//Vector3D verifyVector = Vector3D(2.0, 2.0, 2.0);
-
-			//double factor = 2.0;
-			//Vector3D scaledVector = originalVector * factor;
-
-			//Assert::IsTrue(scaledVector.sameVectorAs(verifyVector, relativeTolerance));
-
 			Vector3D originalVector1 = Vector3D(1.0, 1.0, 1.0);
 			Vector3D verifyVector1 = Vector3D(2.0, 2.0, 2.0);
-
 			double factor1 = 2.0;
 			Vector3D scaledVector1 = originalVector1 * factor1;
-
 			Assert::IsTrue(scaledVector1.sameVectorAs(verifyVector1, relativeTolerance));
 
 			Vector3D originalVector2 = Vector3D(-1.0, -1.0, -1.0);
 			Vector3D verifyVector2 = Vector3D(-2.0, -2.0, -2.0);
-
 			double factor2 = 2.0;
 			Vector3D scaledVector2 = originalVector2 * factor2;
-
 			Assert::IsTrue(scaledVector2.sameVectorAs(verifyVector2, relativeTolerance));
 
 			Vector3D originalVector3 = Vector3D(-1.0, -1.0, 1.0);
 			Vector3D verifyVector3 = Vector3D(2.0, 2.0, -2.0);
-
 			double factor3 = -2.0;
 			Vector3D scaledVector3 = originalVector3 * factor3;
-
 			Assert::IsTrue(scaledVector3.sameVectorAs(verifyVector3, relativeTolerance));
 
 			Vector3D originalVector4 = Vector3D(1.0, 1.0, 1.0);
 			Vector3D verifyVector4 = Vector3D(0.0, 0.0, 0.0);
-
 			double factor4 = 0.0;
 			Vector3D scaledVector4 = originalVector4 * factor4;
-
 			Assert::IsTrue(scaledVector4.sameVectorAs(verifyVector4, relativeTolerance));
 		}
 

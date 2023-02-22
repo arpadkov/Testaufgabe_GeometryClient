@@ -16,7 +16,8 @@ private:
 
 	void onPointMeasurementEvent(std::string);
 	void onKeyPressEvent(std::string);
-	void onErrorEvenet(std::string);
+	void onErrorEvent(std::string);
+	void onLastLineEvent();
 
 public:
 	Client();	
