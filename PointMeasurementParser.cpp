@@ -14,7 +14,7 @@ double PointMeasurementParser::findXvalue()
     int start = findNthOccurance(raw_string, "(", 2) + 1;
     int end = findNthOccurance(raw_string, ")", 1);
 
-    double x = std::stof(raw_string.substr(start, end - start));
+    double x = std::stod(raw_string.substr(start, end - start));
     return x;
 }
 
@@ -25,7 +25,7 @@ double PointMeasurementParser::findYvalue()
     int start = findNthOccurance(raw_string, "(", 3) + 1;
     int end = findNthOccurance(raw_string, ")", 2);
 
-    double y = std::stof(raw_string.substr(start, end - start));
+    double y = std::stod(raw_string.substr(start, end - start));
     return y;
 }
 
@@ -36,7 +36,7 @@ double PointMeasurementParser::findZvalue()
     int start = findNthOccurance(raw_string, "(", 4) + 1;
     int end = findNthOccurance(raw_string, ")", 3);
 
-    double z = std::stof(raw_string.substr(start, end - start));
+    double z = std::stod(raw_string.substr(start, end - start));
     return z;
 }
 
@@ -47,7 +47,7 @@ double PointMeasurementParser::findRvalue()
     int start = findNthOccurance(raw_string, "(", 6) + 1;
     int end = findNthOccurance(raw_string, ")", 5);
 
-    double r = std::stof(raw_string.substr(start, end - start));
+    double r = std::stod(raw_string.substr(start, end - start));
     return r;
 }
 
@@ -67,7 +67,7 @@ double PointMeasurementParser::findNormalXvalue()
     int start = 0;
     int end = findNthOccurance(normalVectorSubstr, ",", 1);
 
-    double normalX = std::stof(normalVectorSubstr.substr(start, end - start));
+    double normalX = std::stod(normalVectorSubstr.substr(start, end - start));
     return normalX;
 }
 
@@ -78,7 +78,7 @@ double PointMeasurementParser::findNormalYvalue()
     int start = findNthOccurance(normalVectorSubstr, ",", 1) + 1;
     int end = findNthOccurance(normalVectorSubstr, ",", 2);
 
-    double normalY = std::stof(normalVectorSubstr.substr(start, end - start));
+    double normalY = std::stod(normalVectorSubstr.substr(start, end - start));
     return normalY;
 }
 
@@ -89,7 +89,7 @@ double PointMeasurementParser::findNormalZvalue()
     int start = findNthOccurance(normalVectorSubstr, ",", 2) + 1;
     int end = normalVectorSubstr.length();
 
-    double normalZ = std::stof(normalVectorSubstr.substr(start, end - start));
+    double normalZ = std::stod(normalVectorSubstr.substr(start, end - start));
     return normalZ;
 }
 

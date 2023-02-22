@@ -51,38 +51,95 @@ namespace GeometryClientTest
 
 		TEST_METHOD(Point3DOffsetTest)
 		{
-			// TODO: create some more complex points, also with negativ values
+			Point3D originalPoint1 = Point3D(1.0, 2.0, 3.0);
+			Vector3D offsetVector1 = Vector3D(1.0, 0.0, 0.0);
+			Point3D* newPoint1 = originalPoint1.offsetByVector(offsetVector1);
+			Point3D verifyPoint1 = Point3D(2.0, 2.0, 3.0);
+			Assert::IsTrue(newPoint1->samePointAs(verifyPoint1, relativeTolerance));
 
-			Point3D originalPoint = Point3D(1.0, 1.0, 1.0);
-			Vector3D offsetVector = Vector3D(1.0, 0.0, 0.0);
+			Point3D originalPoint2 = Point3D(1.0, 1.0, 1.0);
+			Vector3D offsetVector2 = Vector3D(-1.0, -2.0, -3.0);
+			Point3D* newPoint2 = originalPoint2.offsetByVector(offsetVector2);
+			Point3D verifyPoint2 = Point3D(0.0, -1.0, -2.0);
+			Assert::IsTrue(newPoint2->samePointAs(verifyPoint2, relativeTolerance));
 
-			Point3D* newPoint = originalPoint.offsetByVector(offsetVector);
-			Point3D verifyPoint = Point3D(2.0, 1.0, 1.0);
+			Point3D originalPoint3 = Point3D(1.0, -2.0, 3.0);
+			Vector3D offsetVector3 = Vector3D(-1.0, 2.0, 3.0);
+			Point3D* newPoint3 = originalPoint3.offsetByVector(offsetVector3);
+			Point3D verifyPoint3 = Point3D(0.0, 0.0, 6.0);
+			Assert::IsTrue(newPoint3->samePointAs(verifyPoint3, relativeTolerance));
 
-			Assert::IsTrue(newPoint->samePointAs(verifyPoint, relativeTolerance));
+			Point3D originalPoint4 = Point3D(-1.0, -2.0, 3.0);
+			Vector3D offsetVector4 = Vector3D(1.0, -2.0, -3.0);
+			Point3D* newPoint4 = originalPoint4.offsetByVector(offsetVector4);
+			Point3D verifyPoint4 = Point3D(0.0, -4.0, 0.0);
+			Assert::IsTrue(newPoint4->samePointAs(verifyPoint4, relativeTolerance));
 		}
 
 		TEST_METHOD(Vector3DUnitvectorTest)
 		{
-			// TODO: create some more complex vectors, also with negativ values
+			Vector3D originalVector1 = Vector3D(3.0, 0.0, 0.0);
+			Vector3D verifyVector1 = Vector3D(1.0, 0.0, 0.0);
+			Vector3D unitVector1 = originalVector1.getUnitVector();
+			Assert::IsTrue(unitVector1.sameVectorAs(verifyVector1, relativeTolerance));
 
-			Vector3D originalVector = Vector3D(1.0, 0.0, 0.0);
-			Vector3D verifyVector = Vector3D(1.0, 0.0, 0.0);
+			Vector3D originalVector2 = Vector3D(-3.0, 0.0, 0.0);
+			Vector3D verifyVector2 = Vector3D(-1.0, 0.0, 0.0);
+			Vector3D unitVector2 = originalVector2.getUnitVector();
+			Assert::IsTrue(unitVector2.sameVectorAs(verifyVector2, relativeTolerance));
 
-			Vector3D unitVector = originalVector.getUnitVector();
+			Vector3D originalVector3 = Vector3D(0.0, 3.0, 3.0);
+			Vector3D verifyVector3 = Vector3D(0.0, 0.70710678, 0.70710678);
+			Vector3D unitVector3 = originalVector3.getUnitVector();
+			Assert::IsTrue(unitVector3.sameVectorAs(verifyVector3, relativeTolerance));
 
-			Assert::IsTrue(unitVector.sameVectorAs(verifyVector, relativeTolerance));
+			Vector3D originalVector4 = Vector3D(3.0, 3.0, -3.0);
+			Vector3D verifyVector4 = Vector3D(0.57735027, 0.57735027, -0.57735027);
+			Vector3D unitVector4 = originalVector4.getUnitVector();
+			Assert::IsTrue(unitVector4.sameVectorAs(verifyVector4, relativeTolerance));
 		}
 
 		TEST_METHOD(Vector3DMultiplyTest)
 		{
-			Vector3D originalVector = Vector3D(1.0, 1.0, 1.0);
-			Vector3D verifyVector = Vector3D(2.0, 2.0, 2.0);
+			//Vector3D originalVector = Vector3D(1.0, 1.0, 1.0);
+			//Vector3D verifyVector = Vector3D(2.0, 2.0, 2.0);
 
-			double factor = 2.0;
-			Vector3D scaledVector = originalVector * factor;
+			//double factor = 2.0;
+			//Vector3D scaledVector = originalVector * factor;
 
-			Assert::IsTrue(scaledVector.sameVectorAs(verifyVector, relativeTolerance));
+			//Assert::IsTrue(scaledVector.sameVectorAs(verifyVector, relativeTolerance));
+
+			Vector3D originalVector1 = Vector3D(1.0, 1.0, 1.0);
+			Vector3D verifyVector1 = Vector3D(2.0, 2.0, 2.0);
+
+			double factor1 = 2.0;
+			Vector3D scaledVector1 = originalVector1 * factor1;
+
+			Assert::IsTrue(scaledVector1.sameVectorAs(verifyVector1, relativeTolerance));
+
+			Vector3D originalVector2 = Vector3D(-1.0, -1.0, -1.0);
+			Vector3D verifyVector2 = Vector3D(-2.0, -2.0, -2.0);
+
+			double factor2 = 2.0;
+			Vector3D scaledVector2 = originalVector2 * factor2;
+
+			Assert::IsTrue(scaledVector2.sameVectorAs(verifyVector2, relativeTolerance));
+
+			Vector3D originalVector3 = Vector3D(-1.0, -1.0, 1.0);
+			Vector3D verifyVector3 = Vector3D(2.0, 2.0, -2.0);
+
+			double factor3 = -2.0;
+			Vector3D scaledVector3 = originalVector3 * factor3;
+
+			Assert::IsTrue(scaledVector3.sameVectorAs(verifyVector3, relativeTolerance));
+
+			Vector3D originalVector4 = Vector3D(1.0, 1.0, 1.0);
+			Vector3D verifyVector4 = Vector3D(0.0, 0.0, 0.0);
+
+			double factor4 = 0.0;
+			Vector3D scaledVector4 = originalVector4 * factor4;
+
+			Assert::IsTrue(scaledVector4.sameVectorAs(verifyVector4, relativeTolerance));
 		}
 
 	};

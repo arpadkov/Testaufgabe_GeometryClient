@@ -2,6 +2,8 @@
 #include "PointMeasurement.h"
 #include <fstream>
 #include <algorithm>
+#include <sstream>
+#include <iomanip>
 
 GeometryExporterCSV::GeometryExporterCSV(Geometry* geom)
 {
@@ -66,7 +68,16 @@ void GeometryExporterCSV::setPoints()
 
 std::string GeometryExporterCSV::convertToStr(double num)
 {
-	std::string result = std::to_string(num);
+	// stringstream & std::setprecision used, because to_string uses only 6 decimal digits
+
+	std::ostringstream stringStream;
+	stringStream << std::setprecision(7);
+	stringStream << std::fixed;
+	stringStream << num;
+
+	//std::string result = std::to_string(num);
+	std::string result = stringStream.str();
+
 	std::replace(result.begin(), result.end(), '.', ',');
 	return result;
 }
