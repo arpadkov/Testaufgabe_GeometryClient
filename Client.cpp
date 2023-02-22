@@ -33,8 +33,8 @@ void Client::readInputFile()
 	if (file.is_open())
 	{
 		std::string line;
-		while (std::getline(file, line)) {
-			//std::cout << line << "\n";
+		while (std::getline(file, line))
+		{
 			readLine(line);
 		}
 		file.close();
@@ -54,23 +54,34 @@ void Client::exportGeometries()
 		std::cout << "Geometrie " + std::to_string(i + 1) << " exported to:\n";
 		std::cout << outputFilename << "\n";
 	}
-
 }
-	
+
 void Client::readLine(std::string input)
 {
-	std::string tag = input.substr(0, 5);
-	if (tag == "E0000")
+	if (input[6] == '&')
 	{
-		readEvent(input);
+		readAckEvent(input);
 	}
-	// Can be extended for additional message types
+	else if (input[6] == '%')
+	{
+		readTransactionEvent(input);
+	}
+	else if (input[6] == '#')
+	{
+		readDataEvent(input);
+	}
+	else if (input[6] == '!')
+	{
+		readErrorEvent(input);
+	}
+	else
+	{
+		// CommandLine, not implemented
+	}
 }
 
-void Client::readEvent(std::string input)
+void Client::readDataEvent(std::string input)
 {
-	//std::cout << input.substr(8, 8) << "\n";
-
 	if (input.substr(8, 6) == "PtMeas")
 	{
 		// Point Measurement event
@@ -81,12 +92,6 @@ void Client::readEvent(std::string input)
 	{
 		// Key press event
 		onKeyPressEvent(input);
-	}
-
-	else if (input[6] == '!')
-	{
-		// Error event
-		onErrorEvent(input);
 	}
 }
 
@@ -114,18 +119,18 @@ void Client::onKeyPressEvent(std::string keyPressEventLine)
 		std::cout << "Press any key to continue reading" << "\n";
 		std::cin.ignore();
 	}
-	if (keyPressEventLine.find("Del") != std::string::npos)
+
+	else if (keyPressEventLine.find("Del") != std::string::npos)
 	{
 		pointBuffer.pop_back();
 
-		std::cout << "Previus point is deleted";
+		std::cout << "Previous point is deleted" << "\n";
 		std::cout << "Press any key to continue reading" << "\n";
 		std::cin.ignore();
 	}
-	// elseif (...) -> possibility to define actions for other KeyPressEvents
 }
 
-void Client::onErrorEvent(std::string errorEventLine)
+void Client::readErrorEvent(std::string errorEventLine)
 {
 	// delete points from buffer
 	// continue reading file after confirmation
@@ -156,4 +161,14 @@ void Client::onErrorEvent(std::string errorEventLine)
 	std::cin.ignore();
 
 	pointBuffer.clear();
+}
+
+void Client::readAckEvent(std::string)
+{
+	// Can implement ACK event, manual - 3.2.2.3
+}
+
+void Client::readTransactionEvent(std::string)
+{
+	// Can implement Transaction event, manual - 3.2.2.3
 }
