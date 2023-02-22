@@ -44,8 +44,11 @@ void Client::exportGeometries()
 {
 	for (int i = 0; i < savedGeometries.size(); i++)
 	{
+		std::string geomName = "Geometrie " + std::to_string(i+1) + ".csv";
+		std::string outputFilename = client_path + "\\output" + "\\" + geomName;
+
 		GeometryExporterCSV exporter = GeometryExporterCSV(&savedGeometries[i]);
-		exporter.exportGeometry();
+		exporter.exportGeometry(outputFilename, geomName);
 	}
 
 }

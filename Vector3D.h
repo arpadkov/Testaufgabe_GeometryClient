@@ -5,12 +5,13 @@ class Vector3D
 public:
 	Vector3D(double, double, double);
 
-	Vector3D getUnitVector();
-
 	double X;
 	double Y;
 	double Z;
-	
+
+	Vector3D getUnitVector();
+
+	bool sameVectorAs(Vector3D, float epsilon);
 };
 
 Vector3D operator* (double, const Vector3D&);
