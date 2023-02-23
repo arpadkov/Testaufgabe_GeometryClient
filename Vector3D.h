@@ -11,10 +11,14 @@ public:
 
 	Vector3D getUnitVector();
 
-	bool sameVectorAs(Vector3D, float epsilon);
-
 	Vector3D operator+ (Vector3D const& vector);
+	bool operator== (Vector3D const&);
+
+private:
+	int precision = 7;
 };
 
 Vector3D operator* (double, const Vector3D&);
 Vector3D operator* (const Vector3D&, double);
+
+double roundoff(double, int);
