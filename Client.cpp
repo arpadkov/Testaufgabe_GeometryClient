@@ -84,13 +84,11 @@ void Client::readDataEvent(std::string input)
 {
 	if (input.substr(8, 6) == "PtMeas")
 	{
-		// Point Measurement event
 		onPointMeasurementEvent(input);
 	}
 
 	else if (input.substr(8, 8) == "KeyPress")
 	{
-		// Key press event
 		onKeyPressEvent(input);
 	}
 }

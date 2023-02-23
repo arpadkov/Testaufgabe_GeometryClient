@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "../Point3D.cpp"
 #include "../Vector3D.cpp"
+#include "../PointMeasurementParser.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -9,6 +10,10 @@ float relativeTolerance = 0.00001; // 0.001% -> used to compare points for equal
 
 namespace GeometryClientTest
 {
+
+
+
+
 	TEST_CLASS(Geometry3DTest)
 	{
 	public:
@@ -127,4 +132,51 @@ namespace GeometryClientTest
 		}
 
 	};
+
+	TEST_CLASS(PointMeasurementParserTest)
+	{
+	public:
+
+		std::string inputString =
+			"E0000 # PtMeas(X(-711.2140549),Y(863.4),Z(400.6150898),IJK(-0.3746066,0.0,0.9271839),R(1.1679))";
+		PointMeasurementParser parser = PointMeasurementParser(inputString);
+
+		TEST_METHOD(findXTest)
+		{
+			Assert::AreEqual(parser.findXvalue(), -711.2140549);
+		}
+
+		TEST_METHOD(findYTest)
+		{
+			Assert::AreEqual(parser.findYvalue(), 863.4);
+		}
+
+		TEST_METHOD(findZTest)
+		{
+			Assert::AreEqual(parser.findZvalue(), 400.6150898);
+		}
+
+		TEST_METHOD(findNormalXTest)
+		{
+			Assert::AreEqual(parser.findNormalXvalue(), -0.3746066);
+		}
+
+		TEST_METHOD(findNormalYTest)
+		{
+			Assert::AreEqual(parser.findNormalYvalue(), 0.0);
+		}
+
+		TEST_METHOD(findNormalZTest)
+		{
+			Assert::AreEqual(parser.findNormalZvalue(), 0.9271839);
+		}
+
+		TEST_METHOD(findRTest)
+		{
+			Assert::AreEqual(parser.findRvalue(), 1.1679);
+		}
+
+	};
+
+
 }

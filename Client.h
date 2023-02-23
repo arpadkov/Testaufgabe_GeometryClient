@@ -12,7 +12,6 @@ private:
 	std::vector<Geometry> savedGeometries;
 
 	void readLine(std::string);
-	//void readResponse(std::string);
 	void readAckEvent(std::string);
 	void readTransactionEvent(std::string);
 	void readDataEvent(std::string);
@@ -20,7 +19,6 @@ private:
 
 	void onPointMeasurementEvent(std::string);
 	void onKeyPressEvent(std::string);
-	//void onErrorEvent(std::string);
 
 public:
 	Client();	
