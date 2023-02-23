@@ -1,5 +1,5 @@
 #pragma once
-#include "Point3D.h"
+//#include "Point3D.h"
 #include "Vector3D.h"
 #include <string>
 
@@ -8,8 +8,8 @@ class DataPoint
 public:
 	DataPoint(std::string);
 
-	Point3D* getCollisionPoint();
-	Point3D* measurementPoint;
+	Vector3D getCollisionPoint();
+	Vector3D* measurementPoint;
 
 private:
 	Vector3D* normalVector;

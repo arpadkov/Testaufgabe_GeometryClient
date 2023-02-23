@@ -59,9 +59,9 @@ void GeometryExporterCSV::setPoints()
 		measurementPtsY.push_back(current_point.measurementPoint->Y);
 		measurementPtsZ.push_back(current_point.measurementPoint->Z);
 
-		collisionPtsX.push_back(current_point.getCollisionPoint()->X);
-		collisionPtsY.push_back(current_point.getCollisionPoint()->Y);
-		collisionPtsZ.push_back(current_point.getCollisionPoint()->Z);
+		collisionPtsX.push_back(current_point.getCollisionPoint().X);
+		collisionPtsY.push_back(current_point.getCollisionPoint().Y);
+		collisionPtsZ.push_back(current_point.getCollisionPoint().Z);
 	}
 
 }

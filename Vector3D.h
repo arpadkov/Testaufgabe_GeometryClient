@@ -12,6 +12,8 @@ public:
 	Vector3D getUnitVector();
 
 	bool sameVectorAs(Vector3D, float epsilon);
+
+	Vector3D operator+ (Vector3D const& vector);
 };
 
 Vector3D operator* (double, const Vector3D&);

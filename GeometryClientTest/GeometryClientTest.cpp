@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Point3D.cpp"
 #include "../Vector3D.cpp"
 #include "../DataPointParser.cpp"
 #include "../DataPoint.cpp"
@@ -15,28 +14,9 @@ namespace GeometryClientTest
 
 
 
-	TEST_CLASS(Geometry3DTest)
+	TEST_CLASS(Vector3DTest)
 	{
 	public:
-		
-		TEST_METHOD(Point3DEqualsTest)
-		{
-			Point3D point1 = Point3D(1.653, 1.982, 1.333);
-			Point3D point2 = Point3D(1.653, 1.982, 1.333);
-			Assert::IsTrue(point1.samePointAs(point2, relativeTolerance));
-
-			Point3D point3 = Point3D(1.65300001, 1.982, 1.333);
-			Point3D point4 = Point3D(1.653, 1.982, 1.333);
-			Assert::IsTrue(point3.samePointAs(point4, relativeTolerance));
-		}
-
-		TEST_METHOD(Point3DNotEqualsTest)
-		{
-			Point3D point1 = Point3D(1.0001, 1.0, 1.0);
-			Point3D point2 = Point3D(1.0, 1.0, 1.0);
-			Assert::IsFalse(point1.samePointAs(point2, relativeTolerance));
-		}
-
 		TEST_METHOD(Vector3DEqualsTest)
 		{
 			Vector3D vector1 = Vector3D(1.653, 1.982, 1.333);
@@ -55,31 +35,31 @@ namespace GeometryClientTest
 			Assert::IsFalse(vector1.sameVectorAs(vector2, relativeTolerance));
 		}
 
-		TEST_METHOD(Point3DOffsetTest)
+		TEST_METHOD(Vector3DAdditionTest)
 		{
-			Point3D originalPoint1 = Point3D(1.0, 2.0, 3.0);
+			Vector3D originalVector1 = Vector3D(1.0, 2.0, 3.0);
 			Vector3D offsetVector1 = Vector3D(1.0, 0.0, 0.0);
-			Point3D* newPoint1 = originalPoint1.offsetByVector(offsetVector1);
-			Point3D verifyPoint1 = Point3D(2.0, 2.0, 3.0);
-			Assert::IsTrue(newPoint1->samePointAs(verifyPoint1, relativeTolerance));
+			Vector3D newVector1 = originalVector1 + offsetVector1;
+			Vector3D verifyVector1 = Vector3D(2.0, 2.0, 3.0);
+			Assert::IsTrue(newVector1.sameVectorAs(verifyVector1, relativeTolerance));
 
-			Point3D originalPoint2 = Point3D(1.0, 1.0, 1.0);
+			Vector3D originalVector2 = Vector3D(1.0, 1.0, 1.0);
 			Vector3D offsetVector2 = Vector3D(-1.0, -2.0, -3.0);
-			Point3D* newPoint2 = originalPoint2.offsetByVector(offsetVector2);
-			Point3D verifyPoint2 = Point3D(0.0, -1.0, -2.0);
-			Assert::IsTrue(newPoint2->samePointAs(verifyPoint2, relativeTolerance));
+			Vector3D newVector2 = originalVector2 + offsetVector2;
+			Vector3D verifyVector2 = Vector3D(0.0, -1.0, -2.0);
+			Assert::IsTrue(newVector2.sameVectorAs(verifyVector2, relativeTolerance));
 
-			Point3D originalPoint3 = Point3D(1.0, -2.0, 3.0);
+			Vector3D originalVector3 = Vector3D(1.0, -2.0, 3.0);
 			Vector3D offsetVector3 = Vector3D(-1.0, 2.0, 3.0);
-			Point3D* newPoint3 = originalPoint3.offsetByVector(offsetVector3);
-			Point3D verifyPoint3 = Point3D(0.0, 0.0, 6.0);
-			Assert::IsTrue(newPoint3->samePointAs(verifyPoint3, relativeTolerance));
+			Vector3D newVector3 = originalVector3 + offsetVector3;
+			Vector3D verifyVector3 = Vector3D(0.0, 0.0, 6.0);
+			Assert::IsTrue(newVector3.sameVectorAs(verifyVector3, relativeTolerance));
 
-			Point3D originalPoint4 = Point3D(-1.0, -2.0, 3.0);
+			Vector3D originalVector4 = Vector3D(-1.0, -2.0, 3.0);
 			Vector3D offsetVector4 = Vector3D(1.0, -2.0, -3.0);
-			Point3D* newPoint4 = originalPoint4.offsetByVector(offsetVector4);
-			Point3D verifyPoint4 = Point3D(0.0, -4.0, 0.0);
-			Assert::IsTrue(newPoint4->samePointAs(verifyPoint4, relativeTolerance));
+			Vector3D newVector4 = originalVector4 + offsetVector4;
+			Vector3D verifyVector4 = Vector3D(0.0, -4.0, 0.0);
+			Assert::IsTrue(newVector4.sameVectorAs(verifyVector4, relativeTolerance));
 		}
 
 		TEST_METHOD(Vector3DUnitvectorTest)
@@ -134,7 +114,7 @@ namespace GeometryClientTest
 
 	};
 
-	TEST_CLASS(PointMeasurementParserTest)
+	TEST_CLASS(DataPointParserTest)
 	{
 	public:
 
@@ -179,7 +159,7 @@ namespace GeometryClientTest
 
 	};
 
-	TEST_CLASS(PointMeasurementTest)
+	TEST_CLASS(DataPointTest)
 	{
 	public:
 
@@ -190,7 +170,7 @@ namespace GeometryClientTest
 		TEST_METHOD(collisionPointCalcTest)
 		{
 			Vector3D normalVector = Vector3D(5.1, 6.2, 7.3);
-			Point3D measurementPoint = Point3D(100, 100, 100);
+			Vector3D measurementPoint = Vector3D(100, 100, 100);
 			double sphereRadius = 5.0;
 
 			// Tested in Geometry3DTest->Vector3DUnitvectorTest
@@ -203,11 +183,11 @@ namespace GeometryClientTest
 			Vector3D offsetVector = unitVectorReversed * sphereRadius;
 
 			// Offsetting point, tested in Vector3DMultiplyTest->Point3DOffsetTest			
-			Point3D verifyPoint = *measurementPoint.offsetByVector(offsetVector);
+			Vector3D verifyPoint = measurementPoint + offsetVector;
 
 
-			Point3D* point = dataPoint.getCollisionPoint();
-			Assert::IsTrue(verifyPoint.samePointAs(*point, relativeTolerance));
+			Vector3D point = dataPoint.getCollisionPoint();
+			Assert::IsTrue(verifyPoint.sameVectorAs(point, relativeTolerance));
 		}
 
 	};

@@ -21,24 +21,35 @@ Vector3D Vector3D::getUnitVector()
 	return Vector3D(unitX, unitY, unitZ);
 }
 
-Vector3D operator* (double x, const Vector3D& vector)
+Vector3D Vector3D::operator+ (Vector3D const &vector)
 {
-	// Multiplying vector by double value
+	// Sum of 2 vectors
 
-	double resultX = x * vector.X;
-	double resultY = x * vector.Y;
-	double resultZ = x * vector.Z;
+	double resultX = X + vector.X;
+	double resultY = Y + vector.Y;
+	double resultZ = Z + vector.Z;
 
 	return Vector3D(resultX, resultY, resultZ);
 }
 
-Vector3D operator* (const Vector3D& vector, double x)
+Vector3D operator* (double num, const Vector3D& vector)
 {
 	// Multiplying vector by double value
 
-	double resultX = x * vector.X;
-	double resultY = x * vector.Y;
-	double resultZ = x * vector.Z;
+	double resultX = num * vector.X;
+	double resultY = num * vector.Y;
+	double resultZ = num * vector.Z;
+
+	return Vector3D(resultX, resultY, resultZ);
+}
+
+Vector3D operator* (const Vector3D& vector, double num)
+{
+	// Multiplying vector by double value
+
+	double resultX = num * vector.X;
+	double resultY = num * vector.Y;
+	double resultZ = num * vector.Z;
 
 	return Vector3D(resultX, resultY, resultZ);
 }

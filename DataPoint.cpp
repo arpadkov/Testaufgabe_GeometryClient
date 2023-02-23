@@ -1,6 +1,5 @@
 #include "DataPoint.h"
 #include "DataPointParser.h"
-//#include "Point3D.h"
 #include <string>
 
 
@@ -14,7 +13,7 @@ DataPoint::DataPoint(std::string raw_string)
     double X = parser.findXvalue();
     double Y = parser.findYvalue();
     double Z = parser.findZvalue();
-    measurementPoint = new Point3D(X, Y, Z);
+    measurementPoint = new Vector3D(X, Y, Z);
 
     double normalX = parser.findNormalXvalue();
     double normalY = parser.findNormalYvalue();
@@ -24,13 +23,13 @@ DataPoint::DataPoint(std::string raw_string)
     sphereRadius = parser.findRvalue();
 }
 
-Point3D* DataPoint::getCollisionPoint()
+Vector3D DataPoint::getCollisionPoint()
 {
     // Calculate collision point from measuredPoint, offsetDirection and offsetRadius
 
     Vector3D unitVector = normalVector->getUnitVector();
     Vector3D offsetVector = unitVector * sphereRadius * -1;
-    Point3D* collisionPoint = measurementPoint->offsetByVector(offsetVector);
+    Vector3D collisionPoint = *measurementPoint + offsetVector;
 
     return collisionPoint;
 }
