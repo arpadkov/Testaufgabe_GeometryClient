@@ -36,9 +36,6 @@
     <ClCompile Include="Geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataPointParser.cpp">
-      <Filter>Source Files\DataPoint</Filter>
-    </ClCompile>
     <ClCompile Include="DataPoint.cpp">
       <Filter>Source Files\DataPoint</Filter>
     </ClCompile>
@@ -51,6 +48,9 @@
     <ClCompile Include="GeometryExporter.cpp">
       <Filter>Source Files\Exporter</Filter>
     </ClCompile>
+    <ClCompile Include="LineParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -58,9 +58,6 @@
     </ClInclude>
     <ClInclude Include="Geometry.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DataPointParser.h">
-      <Filter>Header Files\DataPoint</Filter>
     </ClInclude>
     <ClInclude Include="DataPoint.h">
       <Filter>Header Files\DataPoint</Filter>
@@ -73,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="GeometryExporter.h">
       <Filter>Header Files\Exporter</Filter>
+    </ClInclude>
+    <ClInclude Include="LineParser.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

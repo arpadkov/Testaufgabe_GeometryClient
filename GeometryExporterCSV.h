@@ -1,6 +1,5 @@
 #pragma once
 #include "GeometryExporter.h"
-#include <vector>
 
 class GeometryExporterCSV : GeometryExporter
 {

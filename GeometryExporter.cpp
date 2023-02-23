@@ -15,7 +15,6 @@ void GeometryExporter::setPoints()
 	for (int i = 0; i < geometry->size(); i++)
 	{
 		DataPoint current_point = geometry->getPointAt(i);
-
 		measurementPtsX.push_back(current_point.measurementPoint.X);
 		measurementPtsY.push_back(current_point.measurementPoint.Y);
 		measurementPtsZ.push_back(current_point.measurementPoint.Z);

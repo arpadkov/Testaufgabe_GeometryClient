@@ -1,14 +1,12 @@
 #include "DataPoint.h"
-#include "DataPointParser.h"
+#include "LineParser.h"
 #include <string>
 
 
 
 DataPoint::DataPoint(std::string raw_string)
 {
-    // There is some conversion error when casting from str to double
-
-    DataPointParser parser = DataPointParser(raw_string);
+    LineParser parser = LineParser(raw_string);
 
     double X = parser.findXvalue();
     double Y = parser.findYvalue();

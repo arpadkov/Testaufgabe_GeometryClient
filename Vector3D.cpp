@@ -30,8 +30,6 @@ Vector3D Vector3D::getUnitVector()
 
 Vector3D Vector3D::operator+ (Vector3D const &vector)
 {
-	// Sum of 2 vectors
-
 	double resultX = X + vector.X;
 	double resultY = Y + vector.Y;
 	double resultZ = Z + vector.Z;
@@ -41,9 +39,6 @@ Vector3D Vector3D::operator+ (Vector3D const &vector)
 
 bool Vector3D::operator== (Vector3D const& vector)
 {
-	double x1 = roundoff(X, precision);
-	double x2 = roundoff(vector.X, precision);
-
 	bool equalX = roundoff(X, precision) == roundoff(vector.X, precision);
 	bool equalY = roundoff(Y, precision) == roundoff(vector.Y, precision);
 	bool equalZ = roundoff(Z, precision) == roundoff(vector.Z, precision);
@@ -55,8 +50,7 @@ bool Vector3D::operator== (Vector3D const& vector)
 	else
 	{
 		return false;
-	}
-	
+	}	
 }
 
 Vector3D operator* (double num, const Vector3D& vector)

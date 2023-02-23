@@ -1,6 +1,5 @@
 #include "Client.h"
-#include "DataPoint.h"
-#include "DataPointParser.h"
+#include "LineParser.h"
 #include "Geometry.h"
 #include "GeometryExporterCSV.h"
 #include <fstream>
@@ -27,7 +26,6 @@ void Client::readInputFile()
 	if (!file)
 	{
 		std::cout << "File not found" << "\n";
-		//throw FileNotFoundException();
 	}
 
 	if (file.is_open())
@@ -60,11 +58,11 @@ void Client::readLine(std::string input)
 {
 	if (input[6] == '&')
 	{
-		readAckEvent(input);
+		// ACK event, not implemented
 	}
 	else if (input[6] == '%')
 	{
-		readTransactionEvent(input);
+		// Transaction complete, not implemented
 	}
 	else if (input[6] == '#')
 	{
@@ -134,26 +132,12 @@ void Client::readErrorEvent(std::string errorEventLine)
 	// continue reading file after confirmation
 	// log to cout
 
-	int startMessage = findNthOccurance(errorEventLine, '"', 1) + 1;
-	int endMessage = findNthOccurance(errorEventLine, '"', 2);
-	std::string errorMessage = errorEventLine.substr(startMessage, endMessage - startMessage);
+	LineParser errorParser = LineParser(errorEventLine);
 
-	int startSeverity = findNthOccurance(errorEventLine, '(', 1) + 1;
-	int endSeverity = findNthOccurance(errorEventLine, ',', 1);
-	std::string errorSeverity = errorEventLine.substr(startSeverity, endSeverity - startSeverity);
-
-	int startCode = findNthOccurance(errorEventLine, ',', 1) + 1;
-	int endCode = findNthOccurance(errorEventLine, ',', 2);
-	std::string errorCode = errorEventLine.substr(startCode, endCode - startCode);
-
-	int startMethod = findNthOccurance(errorEventLine, ',', 2) + 1;
-	int endMethod = findNthOccurance(errorEventLine, ',', 3);
-	std::string errorMethod = errorEventLine.substr(startMethod, endMethod - startMethod);
-
-	std::cout << "Error message: " << errorMessage << "\n";
-	std::cout << "Error severity: " << errorSeverity << "\n";
-	std::cout << "Error code: " << errorCode << "\n";
-	std::cout << "Caused by method: " << errorMethod << "\n";
+	std::cout << "Error message: " << errorParser.findErrorMessage() << "\n";
+	std::cout << "Error severity: " << errorParser.findErrorSeverity() << "\n";
+	std::cout << "Error code: " << errorParser.findErrorCode() << "\n";
+	std::cout << "Caused by method: " << errorParser.findErrorMethod() << "\n";
 	std::cout << std::to_string(pointBuffer.size()) << " Points will be discarded" << "\n";;
 	std::cout << "Press any key to continue reading" << "\n";
 	std::cin.ignore();
@@ -161,12 +145,3 @@ void Client::readErrorEvent(std::string errorEventLine)
 	pointBuffer.clear();
 }
 
-void Client::readAckEvent(std::string)
-{
-	// Can implement ACK event, manual - 3.2.2.3
-}
-
-void Client::readTransactionEvent(std::string)
-{
-	// Can implement Transaction event, manual - 3.2.2.3
-}

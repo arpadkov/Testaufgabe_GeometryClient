@@ -16,7 +16,7 @@ public:
 	bool operator== (Vector3D const&);
 
 private:
-	int precision = 7;
+	int precision = 7;		// Used when comparing vectors for equality
 };
 
 Vector3D operator* (double, const Vector3D&);

@@ -13,7 +13,6 @@ public:
 private:
 	Vector3D normalVector;
 	double sphereRadius;
-
 };
 
 

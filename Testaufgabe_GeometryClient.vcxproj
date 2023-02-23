@@ -132,7 +132,7 @@
     <ClCompile Include="GeometryExporter.cpp" />
     <ClCompile Include="GeometryExporterCSV.cpp" />
     <ClCompile Include="DataPoint.cpp" />
-    <ClCompile Include="DataPointParser.cpp" />
+    <ClCompile Include="LineParser.cpp" />
     <ClCompile Include="Testaufgabe_GeometryClient.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
@@ -142,7 +142,7 @@
     <ClInclude Include="GeometryExporter.h" />
     <ClInclude Include="GeometryExporterCSV.h" />
     <ClInclude Include="DataPoint.h" />
-    <ClInclude Include="DataPointParser.h" />
+    <ClInclude Include="LineParser.h" />
     <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

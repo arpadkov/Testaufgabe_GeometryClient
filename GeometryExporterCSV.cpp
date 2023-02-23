@@ -1,9 +1,5 @@
 #include "GeometryExporterCSV.h"
-#include "DataPoint.h"
 #include <fstream>
-//#include <algorithm>
-//#include <sstream>
-//#include <iomanip>
 
 GeometryExporterCSV::GeometryExporterCSV(Geometry* geom) : GeometryExporter(geom)
 {
