@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="GeometryExporter.cpp" />
     <ClCompile Include="GeometryExporterCSV.cpp" />
     <ClCompile Include="DataPoint.cpp" />
     <ClCompile Include="DataPointParser.cpp" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="GeometryExporter.h" />
     <ClInclude Include="GeometryExporterCSV.h" />
     <ClInclude Include="DataPoint.h" />
     <ClInclude Include="DataPointParser.h" />

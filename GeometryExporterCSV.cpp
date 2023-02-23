@@ -1,14 +1,12 @@
 #include "GeometryExporterCSV.h"
 #include "DataPoint.h"
 #include <fstream>
-#include <algorithm>
-#include <sstream>
-#include <iomanip>
+//#include <algorithm>
+//#include <sstream>
+//#include <iomanip>
 
-GeometryExporterCSV::GeometryExporterCSV(Geometry* geom)
+GeometryExporterCSV::GeometryExporterCSV(Geometry* geom) : GeometryExporter(geom)
 {
-	geometry = geom;
-	setPoints();
 
 }
 
@@ -46,38 +44,4 @@ bool GeometryExporterCSV::exportGeometry(std::string outputFilePath, std::string
 	file.close();
 
 	return true;
-}
-
-void GeometryExporterCSV::setPoints()
-{
-
-	for (int i = 0; i < geometry->size(); i++)
-	{
-		DataPoint current_point = geometry->getPointAt(i);
-
-		measurementPtsX.push_back(current_point.measurementPoint->X);
-		measurementPtsY.push_back(current_point.measurementPoint->Y);
-		measurementPtsZ.push_back(current_point.measurementPoint->Z);
-
-		collisionPtsX.push_back(current_point.getCollisionPoint().X);
-		collisionPtsY.push_back(current_point.getCollisionPoint().Y);
-		collisionPtsZ.push_back(current_point.getCollisionPoint().Z);
-	}
-
-}
-
-std::string GeometryExporterCSV::convertToStr(double num)
-{
-	// stringstream & std::setprecision used, because to_string uses only 6 decimal digits
-
-	std::ostringstream stringStream;
-	stringStream << std::setprecision(7);
-	stringStream << std::fixed;
-	stringStream << num;
-
-	//std::string result = std::to_string(num);
-	std::string result = stringStream.str();
-
-	std::replace(result.begin(), result.end(), '.', ',');
-	return result;
 }

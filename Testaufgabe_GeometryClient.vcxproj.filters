@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\DataPoint">
+      <UniqueIdentifier>{20fb6c08-3218-47c3-924d-bd6e7e5a7864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataPoint">
+      <UniqueIdentifier>{791c4b43-fa48-43d7-8d1b-4358b0ac0198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exporter">
+      <UniqueIdentifier>{5b10b4d5-7b33-4d34-9d67-69bc0dc80f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exporter">
+      <UniqueIdentifier>{d31fa2b3-41f1-432d-8366-4c2d178974dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Testaufgabe_GeometryClient.cpp">
@@ -24,17 +36,20 @@
     <ClCompile Include="Geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataPoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DataPointParser.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\DataPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="DataPoint.cpp">
+      <Filter>Source Files\DataPoint</Filter>
     </ClCompile>
     <ClCompile Include="Vector3D.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\DataPoint</Filter>
     </ClCompile>
     <ClCompile Include="GeometryExporterCSV.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Exporter</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryExporter.cpp">
+      <Filter>Source Files\Exporter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,17 +59,20 @@
     <ClInclude Include="Geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DataPointParser.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DataPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="DataPoint.h">
+      <Filter>Header Files\DataPoint</Filter>
     </ClInclude>
     <ClInclude Include="Vector3D.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DataPoint</Filter>
     </ClInclude>
     <ClInclude Include="GeometryExporterCSV.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Exporter</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryExporter.h">
+      <Filter>Header Files\Exporter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

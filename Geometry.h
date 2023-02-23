@@ -12,7 +12,5 @@ public:
 
 	int size();
 	DataPoint getPointAt(int);
-
-	//void getCollisionPoints();
 };
 

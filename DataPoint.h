@@ -1,5 +1,4 @@
 #pragma once
-//#include "Point3D.h"
 #include "Vector3D.h"
 #include <string>
 
@@ -9,10 +8,10 @@ public:
 	DataPoint(std::string);
 
 	Vector3D getCollisionPoint();
-	Vector3D* measurementPoint;
+	Vector3D measurementPoint;
 
 private:
-	Vector3D* normalVector;
+	Vector3D normalVector;
 	double sphereRadius;
 
 };

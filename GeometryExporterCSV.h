@@ -1,30 +1,16 @@
 #pragma once
-#include "Geometry.h"
+#include "GeometryExporter.h"
 #include <vector>
 
-class GeometryExporterCSV
+class GeometryExporterCSV : GeometryExporter
 {
 public:
-	GeometryExporterCSV(Geometry*);
+	GeometryExporterCSV(Geometry* geom);
 
 	bool exportGeometry(std::string outputFilePath, std::string geomName);
 
 private:
-	Geometry* geometry;
-
 	std::string separator = ";";
 	std::string new_line = "\n";
-
-	std::vector<double> measurementPtsX;
-	std::vector<double> measurementPtsY;
-	std::vector<double> measurementPtsZ;
-
-	std::vector<double> collisionPtsX;
-	std::vector<double> collisionPtsY;
-	std::vector<double> collisionPtsZ;
-
-	void setPoints();
-
-	std::string convertToStr(double);
 };
 

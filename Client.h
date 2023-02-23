@@ -1,5 +1,4 @@
 #pragma once
-#include "DataPoint.h"
 #include "Geometry.h"
 #include <vector>
 #include <string>
