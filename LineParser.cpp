@@ -3,7 +3,6 @@
 LineParser::LineParser(std::string input)
 {
     raw_string = input;
-    //normalVectorSubstr = findNormalSubStr();
 }
 
 double LineParser::findXvalue()

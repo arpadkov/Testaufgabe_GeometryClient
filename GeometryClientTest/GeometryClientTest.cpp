@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../Vector3D.cpp"
-#include "../DataPointParser.cpp"
+#include "../LineParser.cpp"
 #include "../DataPoint.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -109,47 +109,75 @@ namespace GeometryClientTest
 
 	};
 
-	TEST_CLASS(DataPointParserTest)
+	TEST_CLASS(LineParserTest)
 	{
 	public:
 
-		std::string inputString =
+		std::string dataPointLine =
 			"E0000 # PtMeas(X(-711.2140549),Y(863.4),Z(400.6150898),IJK(-0.3746066,0.0,0.9271839),R(1.1679))";
-		DataPointParser parser = DataPointParser(inputString);
+		LineParser dataPointParser = LineParser(dataPointLine);
+
+		std::string errorLine =
+			"E0000 !Error(3,500,HealthCheck,\"Emergency Stop\")";
+		LineParser errorParser = LineParser(errorLine);
 
 		TEST_METHOD(findXTest)
 		{
-			Assert::AreEqual(parser.findXvalue(), -711.2140549);
+			Assert::AreEqual(dataPointParser.findXvalue(), -711.2140549);
 		}
 
 		TEST_METHOD(findYTest)
 		{
-			Assert::AreEqual(parser.findYvalue(), 863.4);
+			Assert::AreEqual(dataPointParser.findYvalue(), 863.4);
 		}
 
 		TEST_METHOD(findZTest)
 		{
-			Assert::AreEqual(parser.findZvalue(), 400.6150898);
+			Assert::AreEqual(dataPointParser.findZvalue(), 400.6150898);
 		}
 
 		TEST_METHOD(findNormalXTest)
 		{
-			Assert::AreEqual(parser.findNormalXvalue(), -0.3746066);
+			Assert::AreEqual(dataPointParser.findNormalXvalue(), -0.3746066);
 		}
 
 		TEST_METHOD(findNormalYTest)
 		{
-			Assert::AreEqual(parser.findNormalYvalue(), 0.0);
+			Assert::AreEqual(dataPointParser.findNormalYvalue(), 0.0);
 		}
 
 		TEST_METHOD(findNormalZTest)
 		{
-			Assert::AreEqual(parser.findNormalZvalue(), 0.9271839);
+			Assert::AreEqual(dataPointParser.findNormalZvalue(), 0.9271839);
 		}
 
 		TEST_METHOD(findRTest)
 		{
-			Assert::AreEqual(parser.findRvalue(), 1.1679);
+			Assert::AreEqual(dataPointParser.findRvalue(), 1.1679);
+		}
+
+		TEST_METHOD(findErrorMessageTest)
+		{
+			std::string errorMessage = "Emergency Stop";
+			Assert::AreEqual(errorParser.findErrorMessage(), errorMessage);
+		}
+
+		TEST_METHOD(findErrorSeverityTest)
+		{
+			std::string errorSeverity = "3";
+			Assert::AreEqual(errorParser.findErrorSeverity(), errorSeverity);
+		}
+
+		TEST_METHOD(findErrorCodeTest)
+		{
+			std::string errorCode = "500";
+			Assert::AreEqual(errorParser.findErrorCode(), errorCode);
+		}
+
+		TEST_METHOD(findErrorMethodTest)
+		{
+			std::string errorMethod = "HealthCheck";
+			Assert::AreEqual(errorParser.findErrorMethod(), errorMethod);
 		}
 
 	};
