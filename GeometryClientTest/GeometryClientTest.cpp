@@ -2,7 +2,8 @@
 #include "CppUnitTest.h"
 #include "../Point3D.cpp"
 #include "../Vector3D.cpp"
-#include "../PointMeasurementParser.cpp"
+#include "../DataPointParser.cpp"
+#include "../DataPoint.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -139,7 +140,7 @@ namespace GeometryClientTest
 
 		std::string inputString =
 			"E0000 # PtMeas(X(-711.2140549),Y(863.4),Z(400.6150898),IJK(-0.3746066,0.0,0.9271839),R(1.1679))";
-		PointMeasurementParser parser = PointMeasurementParser(inputString);
+		DataPointParser parser = DataPointParser(inputString);
 
 		TEST_METHOD(findXTest)
 		{
@@ -174,6 +175,39 @@ namespace GeometryClientTest
 		TEST_METHOD(findRTest)
 		{
 			Assert::AreEqual(parser.findRvalue(), 1.1679);
+		}
+
+	};
+
+	TEST_CLASS(PointMeasurementTest)
+	{
+	public:
+
+		std::string inputString =
+			"E0000 # PtMeas (X(100), Y(100), Z(100), IJK(5.1,6.2,7.3), R(5))";
+		DataPoint dataPoint = DataPoint(inputString);
+
+		TEST_METHOD(collisionPointCalcTest)
+		{
+			Vector3D normalVector = Vector3D(5.1, 6.2, 7.3);
+			Point3D measurementPoint = Point3D(100, 100, 100);
+			double sphereRadius = 5.0;
+
+			// Tested in Geometry3DTest->Vector3DUnitvectorTest
+			Vector3D unitVector = normalVector.getUnitVector();
+
+			// Reversing unitvector, tested in Geometry3DTest->Vector3DMultiplyTest
+			Vector3D unitVectorReversed = unitVector * -1;
+
+			// Multiplying by sphere radius
+			Vector3D offsetVector = unitVectorReversed * sphereRadius;
+
+			// Offsetting point, tested in Vector3DMultiplyTest->Point3DOffsetTest			
+			Point3D verifyPoint = *measurementPoint.offsetByVector(offsetVector);
+
+
+			Point3D* point = dataPoint.getCollisionPoint();
+			Assert::IsTrue(verifyPoint.samePointAs(*point, relativeTolerance));
 		}
 
 	};

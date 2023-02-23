@@ -3,10 +3,10 @@
 #include "Vector3D.h"
 #include <string>
 
-class PointMeasurement
+class DataPoint
 {
 public:
-	PointMeasurement(std::string);
+	DataPoint(std::string);
 
 	Point3D* getCollisionPoint();
 	Point3D* measurementPoint;

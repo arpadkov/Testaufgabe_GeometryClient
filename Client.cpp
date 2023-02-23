@@ -1,6 +1,6 @@
 #include "Client.h"
-#include "PointMeasurement.h"
-#include "PointMeasurementParser.h"
+#include "DataPoint.h"
+#include "DataPointParser.h"
 #include "Geometry.h"
 #include "GeometryExporterCSV.h"
 #include <fstream>
@@ -98,7 +98,7 @@ void Client::onPointMeasurementEvent(std::string pointMeasEventLine)
 	// create PointMeasurement
 	// add point to buffer
 
-	PointMeasurement point = PointMeasurement(pointMeasEventLine);
+	DataPoint point = DataPoint(pointMeasEventLine);
 	pointBuffer.push_back(point);	
 }
 

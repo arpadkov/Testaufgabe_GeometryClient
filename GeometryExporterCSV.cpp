@@ -1,5 +1,5 @@
 #include "GeometryExporterCSV.h"
-#include "PointMeasurement.h"
+#include "DataPoint.h"
 #include <fstream>
 #include <algorithm>
 #include <sstream>
@@ -53,7 +53,7 @@ void GeometryExporterCSV::setPoints()
 
 	for (int i = 0; i < geometry->size(); i++)
 	{
-		PointMeasurement current_point = geometry->getPointAt(i);
+		DataPoint current_point = geometry->getPointAt(i);
 
 		measurementPtsX.push_back(current_point.measurementPoint->X);
 		measurementPtsY.push_back(current_point.measurementPoint->Y);

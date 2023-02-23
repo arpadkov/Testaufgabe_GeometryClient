@@ -1,6 +1,6 @@
 #include "Geometry.h"
 
-Geometry::Geometry(std::vector<PointMeasurement> inputPoints)
+Geometry::Geometry(std::vector<DataPoint> inputPoints)
 {
 	points = inputPoints;
 }
@@ -10,7 +10,7 @@ int Geometry::size()
 	return points.size();
 }
 
-PointMeasurement Geometry::getPointAt(int index)
+DataPoint Geometry::getPointAt(int index)
 {
 	return points[index];
 }

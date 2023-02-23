@@ -1,15 +1,15 @@
-#include "PointMeasurement.h"
-#include "PointMeasurementParser.h"
+#include "DataPoint.h"
+#include "DataPointParser.h"
 //#include "Point3D.h"
 #include <string>
 
 
 
-PointMeasurement::PointMeasurement(std::string raw_string)
+DataPoint::DataPoint(std::string raw_string)
 {
     // There is some conversion error when casting from str to double
 
-    PointMeasurementParser parser = PointMeasurementParser(raw_string);
+    DataPointParser parser = DataPointParser(raw_string);
 
     double X = parser.findXvalue();
     double Y = parser.findYvalue();
@@ -24,12 +24,12 @@ PointMeasurement::PointMeasurement(std::string raw_string)
     sphereRadius = parser.findRvalue();
 }
 
-Point3D* PointMeasurement::getCollisionPoint()
+Point3D* DataPoint::getCollisionPoint()
 {
     // Calculate collision point from measuredPoint, offsetDirection and offsetRadius
 
     Vector3D unitVector = normalVector->getUnitVector();
-    Vector3D offsetVector = unitVector * sphereRadius;
+    Vector3D offsetVector = unitVector * sphereRadius * -1;
     Point3D* collisionPoint = measurementPoint->offsetByVector(offsetVector);
 
     return collisionPoint;

@@ -24,13 +24,13 @@
     <ClCompile Include="Geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PointMeasurement.cpp">
+    <ClCompile Include="DataPoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Point3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PointMeasurementParser.cpp">
+    <ClCompile Include="DataPointParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Vector3D.cpp">
@@ -47,13 +47,13 @@
     <ClInclude Include="Geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PointMeasurement.h">
+    <ClInclude Include="DataPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Point3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PointMeasurementParser.h">
+    <ClInclude Include="DataPointParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vector3D.h">

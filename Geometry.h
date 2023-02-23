@@ -1,17 +1,17 @@
 #pragma once
-#include "PointMeasurement.h"
+#include "DataPoint.h"
 #include <vector>
 
 class Geometry
 {
 private:
-	std::vector<PointMeasurement> points;
+	std::vector<DataPoint> points;
 
 public:
-	Geometry(std::vector<PointMeasurement>);
+	Geometry(std::vector<DataPoint>);
 
 	int size();
-	PointMeasurement getPointAt(int);
+	DataPoint getPointAt(int);
 
 	//void getCollisionPoints();
 };

@@ -1,12 +1,12 @@
-#include "PointMeasurementParser.h"
+#include "DataPointParser.h"
 
-PointMeasurementParser::PointMeasurementParser(std::string input)
+DataPointParser::DataPointParser(std::string input)
 {
     raw_string = input;
     normalVectorSubstr = findNormalSubStr();
 }
 
-double PointMeasurementParser::findXvalue()
+double DataPointParser::findXvalue()
 {
     // (X(122.9341357),  Y(93.2),  Z(-21.4388431),  IJK(-0.9848078,0.0,0.1736482),  R(1.5))
     // X value starts at 2nd opening bracket, ends at 1st closing bracket
@@ -18,7 +18,7 @@ double PointMeasurementParser::findXvalue()
     return x;
 }
 
-double PointMeasurementParser::findYvalue()
+double DataPointParser::findYvalue()
 {
     // Y value starts at 3rd opening bracket, ends at 2nd closing bracket
 
@@ -29,7 +29,7 @@ double PointMeasurementParser::findYvalue()
     return y;
 }
 
-double PointMeasurementParser::findZvalue()
+double DataPointParser::findZvalue()
 {
     // Z value starts at 4th opening bracket, ends at 3rd closing bracket
 
@@ -40,7 +40,7 @@ double PointMeasurementParser::findZvalue()
     return z;
 }
 
-double PointMeasurementParser::findRvalue()
+double DataPointParser::findRvalue()
 {
     // R value starts at 6th opening bracket, ends at 5th closing bracket
 
@@ -51,7 +51,7 @@ double PointMeasurementParser::findRvalue()
     return r;
 }
 
-std::string PointMeasurementParser::findNormalSubStr()
+std::string DataPointParser::findNormalSubStr()
 {
     // Normal vector values start at 5th opening bracket, ends at 4th closing bracket
     int start = findNthOccurance(raw_string, '(', 5) + 1;
@@ -60,7 +60,7 @@ std::string PointMeasurementParser::findNormalSubStr()
     return raw_string.substr(start, end - start);
 }
 
-double PointMeasurementParser::findNormalXvalue()
+double DataPointParser::findNormalXvalue()
 {
     // X value starts at index 0, ends at 1st comma
 
@@ -71,7 +71,7 @@ double PointMeasurementParser::findNormalXvalue()
     return normalX;
 }
 
-double PointMeasurementParser::findNormalYvalue()
+double DataPointParser::findNormalYvalue()
 {
     // Y value starts after 1st comma, ends at 2nd comma
 
@@ -82,7 +82,7 @@ double PointMeasurementParser::findNormalYvalue()
     return normalY;
 }
 
-double PointMeasurementParser::findNormalZvalue()
+double DataPointParser::findNormalZvalue()
 {
     // Z value starts after 2nd comma, ends at the end of substring
 

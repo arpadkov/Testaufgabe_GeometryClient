@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 
-class PointMeasurementParser
+class DataPointParser
 {
 public:
-	PointMeasurementParser(std::string);
+	DataPointParser(std::string);
 
 	double findXvalue();
 	double findYvalue();
