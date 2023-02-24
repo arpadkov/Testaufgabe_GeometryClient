@@ -91,7 +91,7 @@ void Client::readDataEvent(std::string input)
 
 void Client::onPointMeasurementEvent(std::string pointMeasEventLine)
 {
-	// create PointMeasurement
+	// create DataPoint
 	// add point to buffer
 
 	DataPoint point = DataPoint(pointMeasEventLine);
@@ -100,12 +100,9 @@ void Client::onPointMeasurementEvent(std::string pointMeasEventLine)
 
 void Client::onKeyPressEvent(std::string keyPressEventLine)
 {
-	// create Geometry object from buffer
-	// export object to file
-	// log to cout
-
 	if (keyPressEventLine.find("Done") != std::string::npos)
 	{
+		// KeyPress = Done -> create Geometry object from buffer
 		savedGeometries.push_back(Geometry(pointBuffer));
 		pointBuffer.clear();
 
@@ -116,6 +113,7 @@ void Client::onKeyPressEvent(std::string keyPressEventLine)
 
 	else if (keyPressEventLine.find("Del") != std::string::npos)
 	{
+		// KeyPress = Del -> delete last recorded DataPoint
 		pointBuffer.pop_back();
 
 		std::cout << "Previous point is deleted" << "\n";
