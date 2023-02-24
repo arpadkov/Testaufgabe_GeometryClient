@@ -2,6 +2,7 @@
 #include "Geometry.h"
 
 class GeometryExporter
+	// Possibility to implement exporters for different formats, e.g. CSV Exporter
 {
 public:
 	GeometryExporter(Geometry*);

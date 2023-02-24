@@ -9,9 +9,14 @@ GeometryExporterCSV::GeometryExporterCSV(Geometry* geom) : GeometryExporter(geom
 bool GeometryExporterCSV::exportGeometry(std::string outputFilePath, std::string geomName)
 {
 	std::ofstream file(outputFilePath);
+	if (!file)
+	{
+		return false;
+	}
 
 	// Write Header
 	file << geomName + separator + new_line;
+
 
 	file << "messPunktX" + separator;
 	file << "messPunktY" + separator;

@@ -4,7 +4,6 @@
 #include "../LineParser.cpp"
 #include "../DataPoint.cpp"
 #include "UnitTestClient.h"
-//#include "../Client.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -227,7 +226,9 @@ namespace GeometryClientTest
 			Assert::IsTrue(tester.readPointMeasurementLineTest());
 		}
 
-		//
+		// Currently can not test the reading of other Lines, because:
+		// Client is waiting for input from std::cin -> it could be mocked from unittests
+		// TODO: Client should be able to use other i/o streams
 	};
 
 }

@@ -41,14 +41,24 @@ void Client::exportGeometries()
 {
 	for (int i = 0; i < savedGeometries.size(); i++)
 	{
+		std::string outputPath = client_path + "\\output" + "\\";
 		std::string geomName = "Geometrie" + std::to_string(i+1) + ".csv";
-		std::string outputFilename = client_path + "\\output" + "\\" + geomName;
+		std::string outputFilename = outputPath + geomName;
 
 		GeometryExporterCSV exporter = GeometryExporterCSV(&savedGeometries[i]);
-		exporter.exportGeometry(outputFilename, geomName);
+		if (exporter.exportGeometry(outputFilename, geomName))
+		{
+			// File exported
+			std::cout << "Geometry " + std::to_string(i + 1) << " exported to:\n";
+			std::cout << outputFilename << "\n";
+		}
+		else
+		{
+			// Could not export the file
+			std::cout << "Could not export geometry\n";
+			std::cout << "Does " << outputPath << " exist?\n";
+		}
 
-		std::cout << "Geometrie " + std::to_string(i + 1) << " exported to:\n";
-		std::cout << outputFilename << "\n";
 	}
 }
 
