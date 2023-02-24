@@ -28,15 +28,13 @@ void Client::readInputFile()
 		std::cout << "File not found" << "\n";
 	}
 
-	if (file.is_open())
+	std::string line;
+	while (std::getline(file, line))
 	{
-		std::string line;
-		while (std::getline(file, line))
-		{
-			readLine(line);
-		}
-		file.close();
+		readLine(line);
 	}
+	file.close();
+
 }
 
 void Client::exportGeometries()

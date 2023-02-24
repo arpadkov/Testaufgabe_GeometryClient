@@ -1,5 +1,6 @@
 #pragma once
 #include "Geometry.h"
+#include "GeometryClientTest/UnitTestClient.h"
 #include <vector>
 #include <string>
 
@@ -22,5 +23,9 @@ private:
 
 	void onPointMeasurementEvent(std::string);
 	void onKeyPressEvent(std::string);
+
+	// Friend class to be able to test private methods of Client
+	friend UnitTestClient;
 };
+
 

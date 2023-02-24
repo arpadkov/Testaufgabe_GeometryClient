@@ -3,6 +3,8 @@
 #include "../Vector3D.cpp"
 #include "../LineParser.cpp"
 #include "../DataPoint.cpp"
+#include "UnitTestClient.h"
+//#include "../Client.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -214,5 +216,18 @@ namespace GeometryClientTest
 
 	};
 
+	TEST_CLASS(ClientTest)
+	{
+	// Experimental: Tests are implemented in UnitTestClient.cpp
+	public:
+
+		TEST_METHOD(pointMeasurementTest)
+		{
+			UnitTestClient tester = UnitTestClient();
+			Assert::IsTrue(tester.readPointMeasurementLineTest());
+		}
+
+		//
+	};
 
 }
